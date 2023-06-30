@@ -1,11 +1,19 @@
 import React, { Component } from "react";
-import searchPictures from "api";
+import getPictures from "api";
 
 
 class App extends Component {
   state = {
    
   };
+
+  render() {
+    return (
+      <>
+      <div>hello</div>
+      </>
+    )
+  }
 }
 
   // async componentDidMount() {
