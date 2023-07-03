@@ -1,3 +1,3 @@
-<li class="gallery-item">
+{/* <li class="gallery-item">
   <img src="" alt="" />
-</li>
+</li> */}
