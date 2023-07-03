@@ -8,7 +8,7 @@ import Loader from "./Loader/Loader";
 import Button from "./Button/Button";
 import css from './App.module.css';
 
-let page =1;
+let page = 1;
 
 
 class App extends Component {
@@ -29,39 +29,38 @@ class App extends Component {
 
     } else {
       try {
-        this.setState({status: 'pending'})
+        this.setState({ status: 'pending' })
         const { totalHits, hits } = await getPictures(searchQuery, page);
         if (hits.length < 1) {
-          this.setState({status: 'idle'});
+          this.setState({ status: 'idle' });
           alert('Undifined, Try again');
-          this.setState({status: 'rejected'})
+          this.setState({ status: 'rejected' })
           
         } else {
           this.setState({
-            pictures: hits,
+            pictures: hits, searchQuery,
             totalHits: totalHits,
             status: 'resolved',
           })
           
         }
       } catch (error) {
-        this.setState({status: 'rejected'});      
+        this.setState({ status: 'rejected' });      
     }
     }
   }
 
   onBtnClick = async() => {
-    this.setState({status: 'pending'})
+    this.setState({ status: 'pending' })
     try {
       const { hits } = await getPictures(this.state.searchQuery, (page += 1));
       this.setState(prevState => ({
         pictures: [...prevState.pictures, ...hits],
         status: 'resolved',
-
       }))
       
     } catch (error) {
-        this.setState({status: 'rejected'});      
+        this.setState({ status: 'rejected' });      
     }
  }
 
@@ -84,7 +83,7 @@ class App extends Component {
         onSubmit={this.handleSubmit}
         />
         <Loader/>
-        <ImageGallery page={page} pictures={pictures}/>
+        <ImageGallery page={page} pictures={this.state.pictures}/>
         
         {totalHits > 12 && <Button onClick={this.onBtnClick}/>}
         </div>
@@ -106,43 +105,15 @@ class App extends Component {
         <Searchbar
         onSubmit={this.handleSubmit}
         />
-        <Loader />
-        <ImageGallery page={page} pictures={pictures}/>
+        {/* <Loader /> */}
+        <ImageGallery page={page} pictures={this.state.pictures}/>
         
-        {totalHits > 12 && totalHits > pictures.length && <Button onClick={this.onBtnClick}/>}
+        {totalHits > 12 && totalHits > pictures.length && (<Button onClick={this.onBtnClick}/>)}
         </div>
       )          
     }
 
   }
 }
-
-  // async componentDidMount() {
-  //   this.setState({ isLoading: true });
-
-  //   try {
-  //     const response = await axios.get("/search?query=react");
-  //     this.setState({ articles: response.data.hits });
-  //   } catch (error) {
-  //     this.setState({ error });
-  //   } finally {
-  //     this.setState({ isLoading: false });
-  //   }
-  // }
-  // render() {
-  //   const { articles, isLoading, error } = this.state;
-
-  //   return (
-  //     <div>
-  //       {error && <p>Whoops, something went wrong: {error.message}</p>}
-  //       {isLoading && <p>Loading...</p>}
-  //       {articles.length > 0 && <ArticleList articles={articles} />}
-  //     </div>
-  //   );
-  // }
-  
-
-
-
 
 export default App;

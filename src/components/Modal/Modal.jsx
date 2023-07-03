@@ -13,30 +13,31 @@ class Modal extends Component {
   }
 
   keyDown = e => {
-    if (e.code === 'Esccape') {
+    if (e.code === 'Escape') {
       this.props.onClose();      
     }
   }
 
   overlayClick = e => {
-    if (e.target === e.curentTarget) {
+    if (e.currentTarget === e.target) {
       this.props.onClose();      
     }
   }
 
   render () {
-    const { largeImageURL, imageAlt } = this.props;
-    return (
+    const { largeImageURL, imageAlt } = this.props.image;
 
-      <div 
-      class={css.Overlay}
+    return (
+      <div
+      className={css.Overlay}
       onClick={this.overlayClick}>
   <div class={css.Modal}>
-    <img src={largeImageURL} alt={imageAlt} />
+    <img 
+    src={largeImageURL} 
+    alt={imageAlt} />
   </div>
 </div>
-
-    )
+    );
   }
 };
 
