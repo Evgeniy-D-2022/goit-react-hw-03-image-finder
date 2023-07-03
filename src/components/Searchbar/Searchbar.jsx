@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from 'prop-types';
+import css from './Searchbar.module.css';
+import { FaSearch } from 'react-icons/fa';
 
 class Searchbar extends Component {
   state = {
@@ -20,14 +22,14 @@ class Searchbar extends Component {
   render () {
 
     return (
-      <header class="searchbar">
-  <form class="form" onSubmit={this.handleSubmit}>
-    <button type="submit" class="button">
-      <span class="button-label">Search</span>
+      <header className={css.searchbar}>
+  <form className={css.SearchForm} onSubmit={this.handleSubmit}>
+    <button type="submit" className={css.SearchForm_button}>
+      <FaSearch size={25}/>
     </button>
 
     <input
-      class="input"
+      className={css.SearchForm_input}
       type="text"
       name='inputValue'
       value={this.state.inputValue}
@@ -41,11 +43,11 @@ class Searchbar extends Component {
 
     )
   }
-}
+};
 
 export default Searchbar;
 
 Searchbar.propType = {
   onSubmit: PropTypes.func,
-}
+};
 
