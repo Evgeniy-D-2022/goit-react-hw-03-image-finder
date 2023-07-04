@@ -13,14 +13,14 @@ class  ImageGalleryItem extends Component {
   }
   render () {
     const { picture } = this.props;
-    const { webformatURL } = picture;
+    const { webformatURL, tags } = picture;
 
     return (
       <li className={css.ImageGalleryItem}>
     <img 
     className={css.ImageGalleryItem_image}
     src={webformatURL} 
-    alt='imageAlt'
+    alt={tags}
     onClick={this.onModal}
      />
      {this.state.showModal && <Modal onClose={this.onModal} image={picture}/>}

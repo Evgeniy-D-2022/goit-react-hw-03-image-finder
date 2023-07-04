@@ -5,7 +5,6 @@ const BASE_URL = 'https://pixabay.com/api/';
 async function getPictures (searchQuery, page) {
     const options = {
         key: '35854540-bba533f8f1dc090f652d8ed86',
-        page: page,
         per_page: 12,
         image_type: 'photo',
         orientation: 'horizontal',

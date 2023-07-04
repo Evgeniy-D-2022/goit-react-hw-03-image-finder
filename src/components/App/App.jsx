@@ -1,11 +1,11 @@
 import React, { Component } from "react";
-import getPictures from '../api';
-import Searchbar from './Searchbar/Searchbar';
-import ImageGallery from './ImageGallery/ImageGallery';
+import getPictures from '../../api';
+import Searchbar from '../Searchbar/Searchbar';
+import ImageGallery from '../ImageGallery/ImageGallery';
 // import ImageGalleryItem from "./ImageGalleryItem/ImageGalleryItem";
-import Loader from "./Loader/Loader";
+import Loader from "../Loader/Loader";
 // import Modal from "./Modal/Modal";
-import Button from "./Button/Button";
+import Button from "../Button/Button";
 import css from './App.module.css';
 
 let page = 1;
@@ -15,14 +15,13 @@ class App extends Component {
   state = {
     searchQuery: '',
     pictures: [],
-    page: 1,
     status: 'idle',
     totalHits: 0,   
   };
   
 
   handleSubmit = async searchQuery => {
-    
+    page = 1;
     if(searchQuery === '') {
       alert('Please enter text');
       return;
@@ -82,9 +81,9 @@ class App extends Component {
         <Searchbar
         onSubmit={this.handleSubmit}
         />
-        <Loader/>
-        <ImageGallery page={page} pictures={this.state.pictures}/>
         
+        <ImageGallery page={page} pictures={this.state.pictures}/>
+        <Loader/>
         {totalHits > 12 && <Button onClick={this.onBtnClick}/>}
         </div>
       )      
